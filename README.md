@@ -1,3 +1,8 @@
+[![Build Status](https://travis-ci.org/davidkariuki/algorithms.svg?branch=master)](https://travis-ci.org/davidkariuki/algorithms)
+[![Code
+Climate](https://codeclimate.com/github/davidkariuki/algorithms.png)](https://codeclimate.com/github/davidkariuki/algorithms)
+[![Code
+Climate](https://codeclimate.com/github/davidkariuki/algorithms/coverage.png)](https://codeclimate.com/github/davidkariuki/algorithms)
 # Algorithms
 
 Collection of different algorithms, in ruby.
