@@ -23,6 +23,9 @@ And then execute:
 # kth_smallest example
 arr = (1..100).shuffle
 Algorithms.kth_smallest(arr, 22) #returns the 22nd smallest number in arr
+
+# quick_sort! example
+Algorithms.quick_sort!(arr, 0, arr.length - 1)
 ```
 
 ## Contributing
