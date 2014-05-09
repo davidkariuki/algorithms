@@ -22,10 +22,10 @@ And then execute:
 ```ruby
 # kth_smallest example
 arr = (1..100).shuffle
-Algorithms.kth_smallest(arr, 22) #returns the 22nd smallest number in arr
+Algorithms::KthSmallest.smallest(arr, 22) #returns the 22nd smallest number in arr
 
 # quick_sort! example
-Algorithms.quick_sort!(arr, 0, arr.length - 1)
+Algorithms::QuickSort.sort!(arr, 0, arr.length - 1)
 ```
 
 ## Contributing

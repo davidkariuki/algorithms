@@ -1,33 +1,32 @@
 module Algorithms
-  class << self
-    # in-place implementation of the Quicksort Algorithm, source: http://en.wikipedia.org/wiki/Quicksort
+  class QuickSort
+    class << self
+      # in-place implementation of the Quicksort Algorithm, source: http://en.wikipedia.org/wiki/Quicksort
 
-    # left is the index of the leftmost element of the subarray
-    # right is the index of the rightmost element of the subarray (inclusive)
-    # number of elements in subarray = right-left + 1
-    def partition(array, left, right, pivot_index)
-      pivot = array[pivot_index]
-      array[pivot_index], array[right] = array[right], array[pivot_index]
-      moving_index = left
-      (left..right - 1).each do |i|
-        if array[i] <= pivot
-          array[i], array[moving_index] = array[moving_index], array[i]
-          moving_index += 1
+      def partition(array, left_index, right_index, pivot_index)
+        pivot = array[pivot_index]
+        array[pivot_index], array[right_index] = array[right_index], array[pivot_index]
+        new_pivot_index = left_index
+        (left_index..right_index - 1).each do |i|
+          if array[i] <= pivot
+            array[i], array[new_pivot_index] = array[new_pivot_index], array[i]
+            new_pivot_index += 1
+          end
         end
+        array[new_pivot_index], array[right_index] = array[right_index], array[new_pivot_index]
+        new_pivot_index
       end
-      array[moving_index], array[right] = array[right], array[moving_index]
-      moving_index
-    end
 
-    def quick_sort!(array, left, right)
-      if left < right
-        pivot_index = left + (right-left)/2
-        new_pivot_index = partition(array, left, right, pivot_index)
-        quick_sort!(array, left, new_pivot_index - 1)
-        quick_sort!(array, new_pivot_index + 1, right)
+      def sort!(array, left_index, right_index)
+        if left_index < right_index
+          pivot_index = rand(left_index..right_index)
+          new_pivot_index = partition(array, left_index, right_index, pivot_index)
+          sort!(array, left_index, new_pivot_index - 1)
+          sort!(array, new_pivot_index + 1, right_index)
+        end
+        array
       end
-      array
-    end
 
+    end
   end
 end
