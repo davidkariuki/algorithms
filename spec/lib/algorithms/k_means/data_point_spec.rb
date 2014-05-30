@@ -35,5 +35,4 @@ describe Algorithms::KMeans::DataPoint do
       expect(subject.new(args)).to respond_to(:eql?, :hash)
     end
   end
-
 end
