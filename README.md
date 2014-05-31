@@ -26,6 +26,12 @@ smallest_22 = Algorithms::KthSmallest.new(arr).kth_smallest(22) #returns the 22n
 
 # quick_sort! example
 Algorithms::QuickSort.new(arr).sort!
+
+# k-means example
+clusterer = Algorithms::KMeans::Clusterer.new(filename: 'path-to-file')
+clusterer.run
+clusterer.to_chart_data #gives clustered data you can throw in a google
+visualization (e.g. geochart)
 ```
 
 ## Contributing

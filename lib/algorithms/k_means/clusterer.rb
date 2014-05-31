@@ -19,16 +19,14 @@ module Algorithms
       def run
         load_data_points
         compute_initial_centroids if clusters.empty?
-        counter = 1
         MAX_ITERATIONS.times do
-          counter += 1
           clear_clusters
-          assign_points_to_clusters
-          old_clusters = Marshal.load(Marshal.dump(@clusters))
+          assign_points_to_nearest_cluster
+          old_clusters = Marshal.load(Marshal.dump(clusters))
           recompute_centroids
-          assign_points_to_clusters
-          clusters_changed = old_clusters.zip(@clusters).collect {|c1, c2| c1 == c2 }
-          break unless clusters_changed.include?(false)
+          assign_points_to_nearest_cluster
+          clusters_did_not_change = old_clusters.zip(clusters).collect {|c1, c2| c1 == c2 }
+          break unless clusters_did_not_change.include?(false)
         end
       end
 
@@ -42,8 +40,8 @@ module Algorithms
 
       private
 
-      def assign_points_to_clusters
-        @data_points.each do |data_point|
+      def assign_points_to_nearest_cluster
+        data_points.each do |data_point|
           min_distance, nearest_cluster  = MAX_FIXNUM, nil
           clusters.each do |cluster|
             distance = data_point.geographic_distance(cluster.centroid)
@@ -57,16 +55,16 @@ module Algorithms
       end
 
       def recompute_centroids
-        @clusters.each { |cluster| cluster.recompute_centroid! }
+        clusters.each { |cluster| cluster.recompute_centroid! }
       end
 
       def clear_clusters
-        @clusters.each { |cluster| cluster.clear! }
+        clusters.each { |cluster| cluster.clear! }
       end
 
       def compute_initial_centroids
         @num_clusters.times do
-          centroid = @data_points.sample
+          centroid = data_points.sample
           clusters << Cluster.new(centroid: centroid)
         end
       end
