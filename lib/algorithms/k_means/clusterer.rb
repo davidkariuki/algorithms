@@ -17,7 +17,7 @@ module Algorithms
       end
 
       def run
-        load_data_points
+        load_data_points if @data_points.nil?
         compute_initial_centroids if clusters.empty?
         MAX_ITERATIONS.times do
           clear_clusters
